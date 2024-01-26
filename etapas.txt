@@ -1,0 +1,3 @@
+https://unsplash.com/pt-br/s/fotografias/{keyword}
+
+dev: ripi6 => figure => img: tB6UZ a5VGX
