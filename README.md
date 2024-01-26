@@ -1,2 +1,2 @@
-# Web_Scraper_Imag
+# Web_Scraper_Image
  
