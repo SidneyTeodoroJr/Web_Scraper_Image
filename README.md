@@ -21,7 +21,7 @@ Este projeto utiliza o Streamlit para criar uma aplicação de web scraping de i
 </br>
 
 1. Título da Página: "Web Scraper Image"
-2. Ícone da Página: Localizado em "src\img\ico.png"
+2. [Ícone da Página](https://github.com/SidneyTeodoroJr/Web_Scraper_Image/blob/main/src/img/ico.png)
 3. Layout da Página: Configurado como "wide"
 4. Menu Adicional:
  - `Report a bug`: Link para relatar bugs;
