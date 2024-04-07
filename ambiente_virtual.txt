@@ -1,5 +1,0 @@
-# Comando para criar o ambiente virtual: python -m venv scraper 
-# Comando para ativar o ambiente virtual: scraper/Scripts/Activate.ps1
-# Comando para desativar: deactivate
-# OBS: Tudo que for baixado(bibliotecas e dependências), fica somente nesse ambiente!
-

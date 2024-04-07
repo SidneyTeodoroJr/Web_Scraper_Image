@@ -4,55 +4,10 @@ import requests as rq
 from bs4 import BeautifulSoup
 import webbrowser as web
 
-# Definindo configurações de página
-def page():
-    st.set_page_config(
-        page_title="Web Scraper Image", # Título
-        page_icon="src\img\ico.png", # Ícone
-        layout="wide",  # Layout da página
-        menu_items={
-            'Report a bug': "https://github.com/SidneyTeodoroJr",
-            'About': "https://github.com/SidneyTeodoroJr/Web_Scraper_Image"
-        }
-    )
-page()
+from modulo.style import css
+from modulo.page import page
 
-# Estilizando a página
-def css():
-    st.markdown("""
-        <style>
-        h1 {
-            margin-top: 1em;
-            margin-bottom: 0.5em;
-        }
-        .title {
-            color: #ffffff;
-            text-align: center;
-            position: relative;
-            font-size: 2.5rem;
-            letter-spacing: 0.3em;
-            transition: 0.3s;
-            text-shadow: 1px 1px 0 grey, 1px 2px 0 grey, 1px 3px 0 grey, 1px 4px 0 grey,
-            1px 5px 0 grey, 1px 6px 0 grey, 1px 7px 0 grey, 1px 8px 0 grey,
-            5px 13px 15px #bd4bfb9b;
-        }
-        img {
-            margin: 0.8em;
-            filter: brightness(60%);
-            border-radius: 15px;
-            animation: floatAnimation 3.5s ease-in-out infinite alternate;
-            box-shadow: #ffffff 0px 0px 0px 5px;
-        }
-        @keyframes floatAnimation {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(-10px);
-            }
-        }
-        </style>
-    """, unsafe_allow_html=True)
+page()
 css()
 
 st.markdown('<h1 class="title">Web Scraper Image 📷</h1>', unsafe_allow_html=True) # Título
@@ -85,7 +40,7 @@ def get_page(keyword):
 
 # Extrai elementos usando BeautifulSoup
 def process_page(page_content):
-    soup = BeautifulSoup(page_content, "lxml")
+    soup = BeautifulSoup(page_content, "html.parser")
     rows = soup.find_all("div", class_="ripi6")
     placeholder = st.empty()
     col1, col2 = placeholder.columns(2) # Criando duas colunas de tamanhos iguais

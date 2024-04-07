@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=K:\workspace_dev\projects_python\Web_Scraper\Web_Scraper_Imag\scraper
+set VIRTUAL_ENV=K:\workspace_dev\projects_python\Web_Scraper\Web_Scraper_Image\scraper
 
 if not defined PROMPT set PROMPT=$P$G
 
