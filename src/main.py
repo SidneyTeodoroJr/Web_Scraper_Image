@@ -75,13 +75,7 @@ def process_row(row, index, col1, col2):
 def display_image_and_button(i, img_url, download_url, col1, col2, index):
     if i == 0:
         col1.image(img_url)
-        btn = col1.button("Download 📂", key=str(index) + str(i)) # Botão da 1° coluna
-        if btn:
-            web.open_new_tab(download_url)
     else:
         col2.image(img_url)
-        btn = col2.button("Download 📂", key=str(index) + str(i)) # # Botão da 2° coluna
-        if btn:
-            web.open_new_tab(download_url)
 
 main()
