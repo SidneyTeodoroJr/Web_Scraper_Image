@@ -34,7 +34,6 @@ Este projeto utiliza o Streamlit para criar uma aplicação de web scraping de i
 - [Streamlit](https://docs.streamlit.io/)
 - [Requests](https://pypi.org/project/requests/) 
 - [BeautifulSoup](https://pypi.org/project/beautifulsoup4/)
-- [Webbrowser](https://docs.python.org/3/library/webbrowser.html)
 - [lxml](https://lxml.de/)
 
 ## Como Usar
