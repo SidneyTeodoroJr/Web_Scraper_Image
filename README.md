@@ -41,7 +41,7 @@ Este projeto utiliza o Streamlit para criar uma aplicação de web scraping de i
 
 1. Instale as dependências necessárias:
    ```shell
-   pip install streamlit requests beautifulsoup4 lxml
+   pip install requirements.txt
 2. Entre na pasta `src`
    ```shell
    cd src
