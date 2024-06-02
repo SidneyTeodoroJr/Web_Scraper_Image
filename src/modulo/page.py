@@ -4,7 +4,7 @@ import streamlit as st
 def page():
     st.set_page_config(
         page_title="Web Scraper Image", # Título
-        page_icon="src\img\ico.png", # Ícone
+        page_icon="img\ico.png", # Ícone
         layout="centered",  # Layout da página
         menu_items={
             'Report a bug': "https://github.com/SidneyTeodoroJr",
