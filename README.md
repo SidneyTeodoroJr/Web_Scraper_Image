@@ -15,7 +15,6 @@ Este projeto utiliza o Streamlit para criar uma aplicação de web scraping de i
 
 1. Pesquisa de Imagens: Os usuários podem inserir uma palavra-chave no campo de pesquisa.
 2. Exibição de Resultados: As imagens correspondentes à palavra-chave são exibidas em duas colunas.
-3. Download de Imagens: Cada imagem é acompanhada por um botão `Download 📂` que permite o download da imagem original.
 
 ## Configurações da Página
 </br>
@@ -34,7 +33,6 @@ Este projeto utiliza o Streamlit para criar uma aplicação de web scraping de i
 - [Streamlit](https://docs.streamlit.io/)
 - [Requests](https://pypi.org/project/requests/) 
 - [BeautifulSoup](https://pypi.org/project/beautifulsoup4/)
-- [Webbrowser](https://docs.python.org/3/library/webbrowser.html)
 - [lxml](https://lxml.de/)
 
 ## Como Usar
@@ -42,7 +40,7 @@ Este projeto utiliza o Streamlit para criar uma aplicação de web scraping de i
 
 1. Instale as dependências necessárias:
    ```shell
-   pip install streamlit requests beautifulsoup4 lxml
+   pip install requirements.txt
 2. Entre na pasta `src`
    ```shell
    cd src
