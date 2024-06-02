@@ -1,8 +1,6 @@
-# Importando as dependências
 import streamlit as st
 import requests as rq
 from bs4 import BeautifulSoup
-import webbrowser as web
 
 from modulo.style import css
 from modulo.page import page
@@ -10,72 +8,57 @@ from modulo.page import page
 page()
 css()
 
-st.markdown('<h1 class="title">Web Scraper Image 📷</h1>', unsafe_allow_html=True) # Título
+st.markdown('<h1 class="title">Web Scraper Image 📷</h1>', unsafe_allow_html=True)
 
-# Essa função recebe uma palavra-chave como entrada e envia um formulário
 def main():
     with st.form("search"):
-        keyword = st.text_input("search", "landscape") # Campo de entrada do usuário
-        st.form_submit_button("GO") # Botão de submit
+        keyword = st.text_input("search", "vacation")
+        submit = st.form_submit_button("GO")
 
-    # Verifica se o usuário inseriu uma palavra-chave
-    if keyword:
+    if submit and keyword:
         try:
-            page = get_page(keyword) # Recuperar o conteúdo HTML da página web
-            if page is not None: 
-                process_page(page) # pega o conteúdo como entrada e extrai as informações relevantes.
+            print(f"Buscando imagens para: {keyword}...")
+            page_content = get_page(keyword)
+            if page_content:
+                process_page(page_content)
+                print("Busca completa!")
+            else:
+                print("Falha ao recuperar a página. Verifique a palavra-chave e tente novamente.")
+                st.error("Falha ao recuperar a página. Verifique a palavra-chave e tente novamente.")
         except Exception as e:
-            st.error(f"Ocorreu um erro durante a execução: {e}") # Mensagem de erro
+            print(f"Ocorreu um erro durante a execução: {e}")
+            st.error(f"Ocorreu um erro durante a execução: {e}")
 
-# Recupera o conteúdo relacionada a uma determinada palavra-chave
 def get_page(keyword):
-    response = rq.get(f"https://unsplash.com/pt-br/s/fotografias/{keyword}")
-
-    if response.status_code == 200:
+    try:
+        response = rq.get(f"https://unsplash.com/pt-br/s/fotografias/{keyword}")
+        response.raise_for_status()
         return response.content
-    # Caso não encontre, retorna mensagem de erro
-    else:
-        st.warning(f"Falha na requisição. Código de status: {response.status_code}")
+    except rq.RequestException as e:
+        st.error(f"Erro na requisição: {e}")
         return None
 
-# Extrai elementos usando BeautifulSoup
 def process_page(page_content):
     soup = BeautifulSoup(page_content, "html.parser")
-    rows = soup.find_all("div", class_="ripi6")
+
+    # Verificação e ajuste da classe de imagem conforme necessário
+    image_elements = soup.find_all("img")  # Verifique todas as tags de imagem
+
+    if not image_elements:
+        st.warning("Nenhuma imagem encontrada. Verifique a classe usada na busca.")
+        return
+
     placeholder = st.empty()
-    col1, col2 = placeholder.columns(2) # Criando duas colunas de tamanhos iguais
-    # Enumera as linhas e itera cada uma na lista
-    for index, row in enumerate(rows): 
-        process_row(row, index, col1, col2)
+    col1, col2 = placeholder.columns(2)
 
-# A função analisa uma linha de tabela HTML com índice e duas colunas. 
-def process_row(row, index, col1, col2):
-    figures = row.find_all("figure")
-
-    if len(figures) >= 2:
-        for i in range(2):
-            img = figures[i].find("img", class_="tB6UZ a5VGX")
-
-            if img and "srcset" in img.attrs:
-                img_url = img["srcset"].split("?")[0]
-
-                anchor = figures[i].find("a", class_="rEAWd")
-
-                if anchor and "href" in anchor.attrs:
-                    download_url = "https://unsplash.com" + anchor["href"]
-                    display_image_and_button(i, img_url, download_url, col1, col2, index)
-                else:
-                    st.warning("Link de download não encontrado para a imagem.")
+    for index, img in enumerate(image_elements[:10]):  # Limite para 10 imagens
+        img_url = img.get("src")
+        if img_url:
+            if index % 2 == 0:
+                col1.image(img_url)
             else:
-                st.warning("URL da imagem não encontrada.")
-    else:
-        st.warning("Menos de duas imagens encontradas na linha.")
-
-# Exibe a imagem e um botão para baixá-la
-def display_image_and_button(i, img_url, download_url, col1, col2, index):
-    if i == 0:
-        col1.image(img_url)
-    else:
-        col2.image(img_url)
+                col2.image(img_url)
+        else:
+            st.warning("URL da imagem não encontrada.")
 
 main()

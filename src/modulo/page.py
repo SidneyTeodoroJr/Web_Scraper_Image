@@ -5,7 +5,7 @@ def page():
     st.set_page_config(
         page_title="Web Scraper Image", # Título
         page_icon="src\img\ico.png", # Ícone
-        layout="wide",  # Layout da página
+        layout="centered",  # Layout da página
         menu_items={
             'Report a bug': "https://github.com/SidneyTeodoroJr",
             'About': "https://github.com/SidneyTeodoroJr/Web_Scraper_Image"
