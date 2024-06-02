@@ -15,7 +15,6 @@ Este projeto utiliza o Streamlit para criar uma aplicação de web scraping de i
 
 1. Pesquisa de Imagens: Os usuários podem inserir uma palavra-chave no campo de pesquisa.
 2. Exibição de Resultados: As imagens correspondentes à palavra-chave são exibidas em duas colunas.
-3. Download de Imagens: Cada imagem é acompanhada por um botão `Download 📂` que permite o download da imagem original.
 
 ## Configurações da Página
 </br>
